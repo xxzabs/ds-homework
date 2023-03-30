@@ -3,6 +3,7 @@
 typedef int Rank; //秩
 #define DEFAULT_CAPACITY  3 //默认的初始容量（实际应用中可设置为更大）
 #include<stdlib.h>
+#include<iostream>
 template <typename T> class Vector { //向量模板类
 public:
    Rank _size; int _capacity, clock;  T* _elem; //规模、容量、数据区
@@ -154,8 +155,14 @@ template <typename T>
 void Vector<T>::unsort ( Rank lo, Rank hi )
 {
 	T* V = _elem + lo;
-	for(Rank i = hi - lo;i > 0; i--)
-		swap(V[i-1],V[rand() % i]);
+	for(Rank i = hi - lo;i > 0; i--){
+	
+	      T t; 
+	      t=_elem[lo-1];
+         _elem[lo]=_elem[lo-1];
+         _elem[lo-1]=t;
+		//swap(V[i-1],V[rand() % i]);
+		}
 } //对[lo, hi)置乱
 
 //区间删除
@@ -213,8 +220,11 @@ bool Vector<T>::bubble(Rank lo, Rank hi) { //一趟扫描交换
    bool sorted = true; 
    while (++lo < hi) 
       if (_elem[lo - 1] > _elem[lo]) 
-	  {
+	  {  T t;
          sorted = false; 
+         t=_elem[lo-1];
+         _elem[lo]=_elem[lo-1];
+         _elem[lo-1]=t;
          swap(_elem[lo - 1], _elem[lo]); 
       }
    return sorted; //返回有序标志
@@ -226,8 +236,11 @@ bool Vector<T>::bubble(Rank n, Rank lo, Rank hi)
 	while (++lo < hi)
 	{
 		if (_elem[lo - 1]<_elem[lo])
-		{
+		{ T t; 
 			sorted = false;
+			t=_elem[lo-1];
+         _elem[lo]=_elem[lo-1];
+         _elem[lo-1]=t;
 			swap(_elem[lo - 1], _elem[lo]);	//交换两个值
 		}
 	}	
@@ -269,6 +282,9 @@ void Vector<T>::mergeSort(Rank lo , Rank hi){
     int mi = (lo + hi) >>1; // 找到中轴点
     mergeSort(lo,mi); mergeSort(mi,hi); merge(lo,mi,hi); //分治，然后归并
 }
+
+
+
 
 #endif 
   

@@ -11,13 +11,13 @@ int main(){
 		cout <<v[i] <<endl;
 }
     for(int i=0;i<10;i++){
-	Vector<int >.unsort(v[i]);
+   	v.unsort(1,10);
 	cout<<v[i]<<endl;
 	 
 }
-    for(int i=0;i<10;i++){
+    //for(int i=0;i<10;i++){
     	
-	}
+	//}
 
 
 
